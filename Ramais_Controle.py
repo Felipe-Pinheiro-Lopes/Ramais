@@ -15,7 +15,7 @@ def funcao_principal():
 
 def funcao_pesquisar():
     ramal = formulario.lineEdit_5.text()
-    cursor.execute(f"SELECT * FROM Ramais WHERE nome='{ramal}'")
+    cursor.execute(f"SELECT * FROM Ramais WHERE nomes='{ramal}'")
     resultado = cursor.fetchone()
     if resultado:
         formulario.lineEdit_6.setText(resultado[0])

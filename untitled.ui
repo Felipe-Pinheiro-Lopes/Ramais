@@ -370,6 +370,9 @@ color: rgb(85, 85, 255);</string>
         <bold>true</bold>
        </font>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(240, 240, 240);
 color: rgb(85, 85, 255);</string>
@@ -705,7 +708,7 @@ color: rgb(85, 85, 255);</string>
      <widget class="QWidget" name="verticalWidget_8" native="true">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>600</x>
         <y>380</y>
         <width>271</width>
         <height>41</height>
@@ -745,10 +748,10 @@ border-radius: 10px;</string>
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>440</y>
-        <width>621</width>
-        <height>201</height>
+        <x>20</x>
+        <y>410</y>
+        <width>561</width>
+        <height>231</height>
        </rect>
       </property>
       <property name="font">
@@ -792,16 +795,21 @@ color: rgb(85, 85, 255);</string>
       </column>
       <column>
        <property name="text">
+        <string>Setor</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Observação</string>
        </property>
       </column>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>400</y>
-        <width>151</width>
+        <x>670</x>
+        <y>450</y>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -820,6 +828,74 @@ color: rgb(85, 85, 255);</string>
       </property>
       <property name="text">
        <string>Listar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_8">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>510</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Source Code Pro</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(240, 240, 240);
+color: rgb(85, 85, 255);</string>
+      </property>
+      <property name="text">
+       <string>Excluir</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_9">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>570</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Source Code Pro</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(240, 240, 240);
+color: rgb(85, 85, 255);</string>
+      </property>
+      <property name="text">
+       <string>Editar</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_27">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>633</y>
+        <width>271</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 240, 240);</string>
+      </property>
+      <property name="text">
+       <string>Copyright 2023 - All Rights Reserved - Felipe P. Lopes</string>
       </property>
      </widget>
     </widget>

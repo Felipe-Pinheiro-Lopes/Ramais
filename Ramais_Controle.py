@@ -1,9 +1,11 @@
-from PyQt5 import uic,QtWidgets
+from PyQt5 import uic,QtWidgets, QtCore, QtGui
 import _sqlite3
 
+# Conexão com o Banco de Dados
 con = _sqlite3.connect('Ramais.db')
 cursor = con.cursor()
 
+#Função de Lista 
 def funcao_listar():
     cursor.execute("SELECT r.ID, n.Nome, t.Numeros, s.Nome, r.Observacao FROM Ramais r JOIN Nomes n ON r.Nome = n.ID JOIN Telefones t ON r.Telefone = t.ID JOIN Setor s ON r.Setor = s.ID")
     resultados = cursor.fetchall()
@@ -15,7 +17,7 @@ def funcao_listar():
         for j, col in enumerate(row):
             formulario.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(col)))
 
-
+#Funções para obiter os IDs das tabelas extrangeiras 
 def obter_id_setor(setor):
     
     cursor.execute(f"SELECT id FROM Setor WHERE Nome = '{setor}'")
@@ -48,7 +50,8 @@ def obter_id_nome(nome):
         cursor.execute(f"INSERT INTO Nomes (Nome) VALUES ('{nome}')")
         con.commit()
         return cursor.lastrowid
-    
+
+#Função de Cadastro 
 def funcao_principal():
     nome = formulario.lineEdit.text()
     telefone = formulario.lineEdit_2.text()
@@ -71,6 +74,7 @@ def funcao_principal():
     formulario.lineEdit_3.setText("")
     formulario.lineEdit_4.setText("")
 
+#Funções para obiter os valores das tabelas extrangeiras 
 def obter_nome_setor(id_setor):
     cursor.execute(f"SELECT Nome FROM Setor WHERE id = {id_setor}")
     resultado = cursor.fetchone()
@@ -95,6 +99,7 @@ def obter_nome_nome(id_nome):
     else:
         return None
 
+#Função de Pesquisa
 def funcao_pesquisar():
     ramal = formulario.lineEdit_13.text()
     cursor.execute(f"SELECT * FROM Ramais INNER JOIN Nomes ON Ramais.Nome=Nomes.ID INNER JOIN Telefones ON Ramais.Telefone=Telefones.ID INNER JOIN Setor ON Ramais.Setor=Setor.ID WHERE Nomes.nome LIKE '%{ramal}%' OR Telefones.numeros LIKE '%{ramal}%'")
@@ -108,11 +113,49 @@ def funcao_pesquisar():
     else:
         QtWidgets.QMessageBox.warning(formulario, 'Aviso', 'Ramal não encontrado!')
 
+#Função de Edição do Banco
+def funcao_editar_ramal():
+    "a ser feito"
+
+#Função para Exclusão do Banco
+def funcao_excluir_ramal():
+    "a ser feito"
+
+
 app=QtWidgets.QApplication([])
-formulario=uic.loadUi("untitled.ui")
-formulario.pushButton.clicked.connect(funcao_principal)
-formulario.pushButton_3.clicked.connect(funcao_pesquisar)
-formulario.pushButton_6.clicked.connect(funcao_listar)
+formulario=uic.loadUi("untitled.ui") #Carrega o Visual
+formulario.pushButton.clicked.connect(funcao_principal)         # Botão para Cadastro
+formulario.pushButton_3.clicked.connect(funcao_pesquisar)       # Botão para Pesquisa
+formulario.pushButton_7.clicked.connect(funcao_listar)          # Botão para Listar
+formulario.pushButton_8.clicked.connect(funcao_editar_ramal)    # Botão para Editar
+formulario.pushButton_9.clicked.connect(funcao_excluir_ramal)   # Botão para Excluir
+
+#Validadores
+validator = QtGui.QIntValidator()
+formulario.lineEdit_2.setValidator(validator)
+
+nome_validator = QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z ]+"))
+formulario.lineEdit.setValidator(nome_validator)
+formulario.lineEdit_4.setValidator(nome_validator)
+
+class validar_setor(QtGui.QValidator):
+    def validate(self, text, pos):
+        if text:
+            for char in text:
+                if not char.isalpha() and char != '/':
+                    return (QtGui.QValidator.Invalid, text, pos)
+        return (QtGui.QValidator.Acceptable, text, pos)
+setor_validator = validar_setor()
+formulario.lineEdit_4.setValidator(setor_validator)
+
+formulario.lineEdit_9.setReadOnly(True)
+formulario.lineEdit_10.setReadOnly(True)
+formulario.lineEdit_11.setReadOnly(True)
+formulario.lineEdit_12.setReadOnly(True)
 
 formulario.show()
 app.exec()
+
+# Banco de Dados = SQLite3
+# Visual = PyQt5 ("Qt Designer")
+# Python 3.11.3

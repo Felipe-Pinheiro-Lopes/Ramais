@@ -898,6 +898,32 @@ color: rgb(85, 85, 255);</string>
        <string>Copyright 2023 - All Rights Reserved - Felipe P. Lopes</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>221</y>
+        <width>21</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Source Code Pro</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(240, 240, 240);
+color: rgb(85, 85, 255);</string>
+      </property>
+      <property name="text">
+       <string>?</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
